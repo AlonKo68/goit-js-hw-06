@@ -1,20 +1,30 @@
-const profile = {
-  username: 'Jacob',
-  playTime: 300,
-  getInfo() {
-    return `${this.username} has ${this.playTime} active hours!`;
-  },
-  changeUsername(newName) {
-    this.username = newName;
-  },
-  updatePlayTime(amount) {
-    this.playTime = amount + this.playTime;
-  },
-};
-console.log(profile.getInfo()); // "Jacob has 300 active hours!"
+//           Задача m6-3. Конструктор рядків
 
-profile.changeUsername('Marco');
-console.log(profile.getInfo()); // "Marco has 300 active hours!"
+class StringBuilder {
+  #value;
+  constructor(initialValue) {
+    this.#value = initialValue;
+  }
+  getValue() {
+    return this.#value;
+  }
+  padStart(str) {
+    this.#value = str + this.#value;
+  }
+  padEnd(str) {
+    this.#value += str;
+    // this.#value = this.#value + str;
+  }
+  padBoth(str) {
+    this.#value = str + this.#value + str;
+  }
+}
+const builder = new StringBuilder(".");
 
-profile.updatePlayTime(20);
-console.log(profile.getInfo()); // "Marco has 320 active hours!"
+console.log(builder.getValue()); // "."
+builder.padStart("^");
+console.log(builder.getValue()); // "^."
+builder.padEnd("^");
+console.log(builder.getValue()); // "^.^"
+builder.padBoth("=");
+console.log(builder.getValue()); // "=^.^="
